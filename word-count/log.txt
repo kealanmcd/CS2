@@ -1,0 +1,92 @@
+Input:
+Input a sentence consisting of alphabetical characters only: 
+> *Only the enter key was entered
+
+Output:
+Total number of words found is 0
+The longest word count is 0
+The most vowels found in a single word is 0
+
+
+
+
+Input:
+Input a sentence consisting of alphabetical characters only: 
+> start     and      finish
+
+Output:
+Total number of words found is 3
+The longest word count is 6
+The most vowels found in a single word is 2
+
+
+
+
+Input:
+Input a sentence consisting of alphabetical characters only: 
+> AEIOUaeiou
+
+Output:
+Total number of words found is 1
+The longest word count is 10
+The most vowels found in a single word is 10
+
+
+
+
+Input:
+Input a sentence consisting of alphabetical characters only: 
+> here aRe SoME VoOwWels AEIou
+
+Output:
+Total number of words found is 5
+The longest word count is 8
+The most vowels found in a single word is 5
+
+
+
+
+Input:
+Input a sentence consisting of alphabetical characters only: 
+> I wiLL. Rej3ct 4ny w0rd with $pecial characters.
+
+Output:
+Total number of words found is 2
+The longest word count is 4
+The most vowels found in a single word is 1
+
+
+
+
+Input:
+Input a sentence consisting of alphabetical characters only: 
+> 1234 *£!@
+
+Output:
+Total number of words found is 0
+The longest word count is 0
+The most vowels found in a single word is 0
+
+
+
+
+Input:
+Input a sentence consisting of alphabetical characters only: 
+> 12 and   .TEexxt
+
+Output:
+Total number of words found is 1
+The longest word count is 3
+The most vowels found in a single word is 1
+
+
+
+
+Input:
+Input a sentence consisting of alphabetical characters only: 
+> Sly lynx fly by
+
+Output:
+Total number of words found is 4
+The longest word count is 4
+The most vowels found in a single word is 0
