@@ -2,8 +2,7 @@
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int main() {
   
   int totalWordCount = 0;       // Holds the total number of words in input
   int longestWordCharCount = 0; // Stores the length of the longest word
@@ -28,7 +27,6 @@ int main()
       
     inputChar = cin.get();
     number = inputChar + 0; // Convert character to ASCII number
-   // cout << inputChar << endl;
     
     // Check if the inputted character is uppercased or lowercased
     bool uppercaseChar = (number >= 65 && number <= 90) ? true : false;
