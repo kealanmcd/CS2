@@ -99,7 +99,7 @@ void outputDomino(int number, string dominoHalf)
 int main()
 {
 
-  int dominoArraySize = 27;
+  int dominoArraySize = 28;
   domino dominoArray[dominoArraySize];
   buildDoubleSixSet(dominoArray);
 
@@ -110,7 +110,7 @@ int main()
     outputDomino(dominoArray[i].last, "lower");
   }
 
-  insertionSortUpper(dominoArray, dominoArraySize);
+  insertionSort(dominoArray, dominoArraySize);
 
   cout << "Sorted Domino Array" << endl;
   for (int i = 0; i < dominoArraySize; i++)  {
