@@ -73,7 +73,7 @@ void outputDomino(int number, string dominoHalf)
 
     if (number == 4 && dot == 3) {
       offset = 1;
-    } else if (number == 4 && dot == 4 || number == 2 && dot == 2) {
+    } else if ((number == 4 && dot == 4) || (number == 2 && dot == 2)) {
       offset = 0;
     }
 
@@ -117,4 +117,6 @@ int main()
     outputDomino(dominoArray[i].first, "upper");
     outputDomino(dominoArray[i].last, "lower");
   }
+
+  return 0;
 }
