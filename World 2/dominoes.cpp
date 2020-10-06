@@ -98,23 +98,60 @@ void outputDomino(int number, string dominoHalf)
 }
 
 
-struct dominoPattern   // This struct is used in "Method 2" where the string pattern for each domino number is known
+struct dominoPattern   // This struct is used in "Method 2" where the string pattern for each domino number is known and in "Method 3" to hold the string pattern from the function "buildDominoNumPattern"
 {
   string pattern;
 };
 
+/* This function is an altered version of the "outputDomino" function. This function is used in Method 3 */
+string buildDominoNumPattern(int number)
+{
+  string dominoPattern = "";
 
+  double key = 9.0 / number;    // The amount of times "number" can be divided into 9 is used to formulate where to output each "*"
+
+  int dot = 1;            // "dot" represents the current "*" that needs to be outputted and is incremented each time the index position for each "*" is found. Each time the the poisition of "*" is found, the "dot" value increases.
+  int offset = 0;         // If outputing the pattern for numbers [1-4], these require an initial offset value in find it's correct index position
+  if (number < 5) {
+    offset = number - 5;
+  }
+
+  for (int i = 1; i < 10; i++) {
+    if (i % 3 == 1) { dominoPattern = dominoPattern + "|"; }    // Stores the left side of the domino using a "|" character
+
+    if (number == 4 && dot == 3) {
+      offset = 1;
+    } else if ((number == 4 && dot == 4) || (number == 2 && dot == 2)) {
+      offset = 0;
+    }
+
+    if (i == floor(key * dot) + offset) {   // Stores a "*" character when its correct index position is found
+      dominoPattern = dominoPattern + "*";
+      dot++;
+      if (number == 3) { offset += 1; }
+    } else {
+      dominoPattern = dominoPattern + " ";
+    }
+    if (i % 3 == 0) { dominoPattern = dominoPattern + "|\n"; }    // Stores the right side of the domino using a "|" character
+  }
+
+  return dominoPattern;  // Returns the total string of the built domino number. For example if 6 is the number, the string should be "|* *|\n|* *|\n|* *|\n"
+
+}
 
 int main()
 {
 
-  int dominoArraySize = 28;
-  domino dominoArray[dominoArraySize];
-  buildDoubleSixSet(dominoArray);
+  int dominoArraySize = 28;             // The double-six set will have a total of 28 dominoes
+  domino dominoArray[dominoArraySize];  // Declare the array that will contain the double-six set domino combinations
+  buildDoubleSixSet(dominoArray);       // Fills the "dominoArray" with all the double-six set combos.
 
 
+  /*=================================================================
+  
+    Method 1: Assuming Domino Pattern is unknown
 
-  /* Method 1: Assuming Domino Pattern is unknown */
+  =================================================================*/
   
   cout << "Built Domino Array" << endl;
   for (int i = 0; i < dominoArraySize; i++)  {
@@ -132,10 +169,15 @@ int main()
 
 
 
+  /*=================================================================
 
+   Method 2: Assuming the Domino pattern can be pre-built without 
+             needing a function to build the Domino pattern 
 
-  /* Method 2: Assuming the Domino pattern can be pre-built without needing a function to build the Domino pattern  */
-    
+  =================================================================*/
+
+  
+  int dominoPrintSize = 7;
   dominoPattern zero { "|   |\n|   |\n|   |\n" };
   dominoPattern one { "|   |\n| * |\n|   |\n" };
   dominoPattern two { "| * |\n|   |\n| * |\n" };
@@ -144,8 +186,7 @@ int main()
   dominoPattern five { "|* *|\n| * |\n|* *|\n" };
   dominoPattern six { "|* *|\n|* *|\n|* *|\n" };
 
-  cout << "Print sorted Domino Array with pre-built dominoPattern" << endl;
-  int dominoPrintSize = 7;
+  cout << "Print Domino Array with pre-built dominoPattern" << endl;
   dominoPattern dominoPrint[dominoPrintSize] = {zero, one, two, three, four, five, six};
     
   for (int i = 0; i < dominoArraySize; i++)  {
@@ -156,6 +197,34 @@ int main()
     cout << dominoPrint[first].pattern;
     cout << "|---|" << endl;
     cout << dominoPrint[last].pattern;
+    cout << " --- " << endl;
+  }
+
+
+
+  /*=================================================================
+
+    Method 3: Combining "Method 1" and "Method 2"
+
+  =================================================================*/
+
+  dominoPattern dominoPatternArray[dominoPrintSize];        // Declare the array of structs to be filled with dominoPattern structs
+
+  for (int i = 0; i < dominoPrintSize; i++) {               // Fill the array of structs with integer patterns
+    dominoPattern domino { buildDominoNumPattern(i) };
+    dominoPatternArray[i] = domino;
+  }
+  
+  cout << "Print Domino Array using patterns built by the 'buildDominoNumPattern' function" << endl;
+
+  for (int i = 0; i < dominoArraySize; i++)  {
+    int first = dominoArray[i].first;   // assign the top half domino value to "first"
+    int last = dominoArray[i].last;     // assign the bottom half domino value to "last"
+    
+    cout << " ___ " << endl;
+    cout << dominoPatternArray[first].pattern;
+    cout << "|---|" << endl;
+    cout << dominoPatternArray[last].pattern;
     cout << " --- " << endl;
   }
 
