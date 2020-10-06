@@ -2,7 +2,8 @@
 using namespace std;
 #include <math.h>
 
-struct domino {
+struct domino 
+{
   int first;
   int last;
 };
@@ -96,6 +97,14 @@ void outputDomino(int number, string dominoHalf)
   }
 }
 
+
+struct dominoPattern   // This struct is used in "Method 2" where the string pattern for each domino number is known
+{
+  string pattern;
+};
+
+
+
 int main()
 {
 
@@ -103,6 +112,9 @@ int main()
   domino dominoArray[dominoArraySize];
   buildDoubleSixSet(dominoArray);
 
+
+
+  /* Method 1: Assuming Domino Pattern is unknown */
   
   cout << "Built Domino Array" << endl;
   for (int i = 0; i < dominoArraySize; i++)  {
@@ -116,6 +128,35 @@ int main()
   for (int i = 0; i < dominoArraySize; i++)  {
     outputDomino(dominoArray[i].first, "upper");
     outputDomino(dominoArray[i].last, "lower");
+  }
+
+
+
+
+
+  /* Method 2: Assuming the Domino pattern can be pre-built without needing a function to build the Domino pattern  */
+    
+  dominoPattern zero { "|   |\n|   |\n|   |\n" };
+  dominoPattern one { "|   |\n| * |\n|   |\n" };
+  dominoPattern two { "| * |\n|   |\n| * |\n" };
+  dominoPattern three { "|*  |\n| * |\n|  *|\n" };
+  dominoPattern four { "|* *|\n|   |\n|* *|\n" };
+  dominoPattern five { "|* *|\n| * |\n|* *|\n" };
+  dominoPattern six { "|* *|\n|* *|\n|* *|\n" };
+
+  cout << "Print sorted Domino Array with pre-built dominoPattern" << endl;
+  int dominoPrintSize = 7;
+  dominoPattern dominoPrint[dominoPrintSize] = {zero, one, two, three, four, five, six};
+    
+  for (int i = 0; i < dominoArraySize; i++)  {
+    int first = dominoArray[i].first;   // assign the top half domino value to "first"
+    int last = dominoArray[i].last;     // assign the bottom half domino value to "last"
+    
+    cout << " ___ " << endl;
+    cout << dominoPrint[first].pattern;
+    cout << "|---|" << endl;
+    cout << dominoPrint[last].pattern;
+    cout << " --- " << endl;
   }
 
   return 0;
