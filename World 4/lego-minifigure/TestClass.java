@@ -70,19 +70,6 @@ public class TestClass
     legoFigure.name = null;
     System.out.println(legoFigure);
 
-
-    /*LegoHat hat = new LegoHat("Fedora", 2);
-    LegoItem sword = new LegoItem("Sword", 600);
-    LegoMinifigure a = new LegoMinifigure("John", hat, sword, null);
-    System.out.println(a.name);
-    System.out.println(a.hat);
-    System.out.println(a.leftHand);
-    System.out.println(a.rightHand);
-    a.swapHands();
-    System.out.println(a.leftHand);
-    System.out.println(a);
-    System.out.println("test");
-    System.out.println(a.isGood("spring", 800));*/
   }
   
 }

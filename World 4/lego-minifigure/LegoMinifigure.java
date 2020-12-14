@@ -34,12 +34,8 @@ public class LegoMinifigure {
     } else if (leftHand != null || rightHand != null) {
       legoFigureDetails += "is holding ";
       legoFigureDetails += (leftHand != null) ? leftHand + " in the left hand" : rightHand + " in the right hand";
-    } else {
-      ///legoFigureDetails += "nothing.";
     }
-
     legoFigureDetails += ".";
-    //legoFigureDetails += hat ? "who is wearing a" + hat" : "";
     
     return legoFigureDetails;
   }
@@ -63,11 +59,7 @@ public class LegoMinifigure {
   }
   
   public boolean isGood(String season, float threshold) {
-    // needs to be updated to check for null values in the hands and hats
 
-    // has hat?
-    // has leftHand??
-    // has rightHand??
     if (hat == null) {
       return false;
     } else {
@@ -80,8 +72,6 @@ public class LegoMinifigure {
         }
       } else if (leftHand == null && rightHand != null) {
         if (hat.computeStyle(season) >= 6 && rightHand.isHeavy(threshold) == false) {
-
-
           return true;
         } else {
           return false;
@@ -96,12 +86,5 @@ public class LegoMinifigure {
       }
     }
 
-    /*System.out.println(threshold);
-    System.out.println(rightHand.isHeavy(threshold));
-    if ((hat.computeStyle(season) >= 6) && (leftHand.isHeavy(threshold) == false && rightHand.isHeavy(threshold) == false)) {
-      return true;
-    } else {
-      return false;
-    }*/
   }
 }

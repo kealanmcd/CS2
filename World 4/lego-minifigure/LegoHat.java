@@ -22,10 +22,7 @@ public class LegoHat {
   }
   
   public int computeStyle(String season) {
-    // toque, winter, 1
-    // sun visor, summer, 5... every other season 1.
-
-    // Create HashMap of hats, that contains a hashMap  of seasons and their respective values.
+    
     HashMap<String, HashMap<String, Integer>> hatStyles = new HashMap<String, HashMap<String, Integer>>();
     
     HashMap<String, Integer> toqueSeasons = new HashMap<String, Integer>();
