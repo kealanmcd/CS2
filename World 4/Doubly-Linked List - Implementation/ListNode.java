@@ -2,18 +2,20 @@ public class ListNode
 {
     public ReadThis data;    
     public ListNode next;
+    public ListNode prev;
     
     public static int totalNodes = 0;
     
     public ListNode(ReadThis newData)
     {
-        this(newData, null);
+        this(newData, null, null);
     }
     
-    public ListNode(ReadThis newData, ListNode newNext)
+    public ListNode(ReadThis newData, ListNode newNext, ListNode newPrev)
     {
         data = newData;
         next = newNext;
+        prev = newPrev;
         totalNodes++;
     }
     
@@ -45,6 +47,7 @@ public class ListNode
     public ListNode addNodeToBeginning(ListNode newNode)
     {
         newNode.next = this;
+        this.prev = newNode;
         return newNode;
     }
     
@@ -52,13 +55,17 @@ public class ListNode
     // Add a node to the end of the list "this" belongs to
     public void addNodeToEnd(ListNode newNode)
     {
+        ListNode prevNode = null;
         ListNode currNode = this;
         while (currNode.next != null)
         {
+            prevNode = currNode;
             currNode = currNode.next;
         }
         
+        currNode.prev = prevNode;
         currNode.next = newNode;
+        currNode.next.prev = currNode;
     }
     
     
@@ -83,8 +90,10 @@ public class ListNode
         // or the node we want to add the new one after
         if (currNode != null)
         {
+            newNode.prev = currNode;
             newNode.next = currNode.next;
             currNode.next = newNode;
+            currNode.next.next.prev = newNode;
         }
     }
     
@@ -97,6 +106,7 @@ public class ListNode
         // making the second node in the list the head
         // (if there isn't one, that's ok, head will
         // just become null)
+        next.prev = null;
         return next;
     }
     
@@ -148,6 +158,9 @@ public class ListNode
         // (which can be null)
         if (data.equals(toRemove.data))
         {
+            if (next != null) {
+                next.prev = null;
+            }
             return next;
         }
         
@@ -171,6 +184,7 @@ public class ListNode
             if (currNode.next != null)
             {
                 currNode.next = currNode.next.next;
+                currNode.next.prev = currNode;
             }
             
             // If we got this far, the head hasn't changed
@@ -197,5 +211,32 @@ public class ListNode
         }
         
         return length;
+    }
+
+    public String concatenate()
+    {
+        ListNode currNode = this;
+        String concattedStr = "";
+
+        while (currNode != null) {
+            concattedStr += currNode.data.toString();
+            currNode = currNode.next;
+        }
+        return concattedStr;
+    }
+
+    public ListNode reverse() 
+    {
+        ListNode temp = null;
+        ListNode current = this;
+        
+        while(current != null) {
+            temp = current.prev;
+            current.prev = current.next;
+            current.next = temp;
+            current = current.prev;
+        }
+
+		return temp.prev;
     }
 }

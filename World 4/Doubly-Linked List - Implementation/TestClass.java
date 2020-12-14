@@ -24,7 +24,7 @@ public class TestClass
         // We can manually create a linked list
         // with two nodes like this:
 
-        ListNode listHead = new ListNode(r1, new ListNode(r2));
+        ListNode listHead = new ListNode(r1, new ListNode(r2), null);
         
         ListNode.printNumNodes(); // <- best way to call a static method
         listHead.printNumNodes(); // <- prints the same thing, but should avoid
@@ -45,6 +45,14 @@ public class TestClass
         ListNode.printNumNodes();
         listHead.printListFromHere();
         
+        System.out.println("Test concatenating");
+        System.out.println(listHead.concatenate());
+
+        System.out.println("Reverse list");
+        listHead = listHead.reverse();
+
+        System.out.println("Print reversed list");
+        listHead.printListFromHere();
         
         ////
         // Let's test removing nodes from the beginning, middle, and end:
