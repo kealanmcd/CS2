@@ -236,7 +236,7 @@ public class ListNode
             current.next = temp;
             current = current.prev;
         }
-
-		return temp.prev;
+        
+        return temp.prev;
     }
 }
