@@ -4,12 +4,11 @@ public class LegoMinifigure {
   LegoItem leftHand;
   LegoItem rightHand;
   
-  // Provide a constructor (which allows each attribute to be set), as well as the following methods:
   LegoMinifigure(String newName, LegoHat newHat, LegoItem leftItem, LegoItem rightItem) {
-      name = newName;
-      hat = newHat;
-      leftHand = leftItem;
-      rightHand = rightItem;
+    name = newName;
+    hat = newHat;
+    leftHand = leftItem;
+    rightHand = rightItem;
   }
   
   public String toString() {
@@ -41,50 +40,34 @@ public class LegoMinifigure {
   }
   
   public void swapHands() {
-      LegoItem placeholder = leftHand;
-      leftHand = rightHand;
-      rightHand = placeholder;
+    LegoItem placeholder = leftHand;
+    leftHand = rightHand;
+    rightHand = placeholder;
   }
   
-  public void wearHat(LegoHat hatY) {
-      hat = hatY;
+  public void wearHat(LegoHat initHat) {
+    hat = initHat;
   }
   
   public void placeInLeftHand(LegoItem item) {
-      leftHand = item;
+    leftHand = item;
   }
   
   public void placeInRightHand(LegoItem item) {
-      rightHand = item;
+    rightHand = item;
   }
   
   public boolean isGood(String season, float threshold) {
-
+    season = season.toLowerCase();
     if (hat == null) {
       return false;
-    } else {
-      if (leftHand != null && rightHand == null) {
-        if (hat.computeStyle(season) >= 6 && leftHand.isHeavy(threshold) == false) {
-
-          return true;
-        } else {
-          return false;
-        }
-      } else if (leftHand == null && rightHand != null) {
-        if (hat.computeStyle(season) >= 6 && rightHand.isHeavy(threshold) == false) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        if ((hat.computeStyle(season) >= 6) && (leftHand.isHeavy(threshold) == false && rightHand.isHeavy(threshold) == false)) {
-
-          return true;
-        } else {
-          return false;
-        }
-      }
     }
+
+    boolean leftHandGood = leftHand != null ? leftHand.isHeavy(threshold) : false;
+    boolean rightHandGood = rightHand != null ? rightHand.isHeavy(threshold) : false;
+    boolean isGoodResult = ((hat.computeStyle(season) >= 6) && leftHandGood == false && rightHandGood == false) ? true : false;
+
+    return isGoodResult;
 
   }
 }

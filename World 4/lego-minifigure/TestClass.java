@@ -24,49 +24,56 @@ public class TestClass
     System.out.println(legoFigure.leftHand);
     System.out.println(legoFigure.rightHand);
     System.out.println(legoFigure);
-    System.out.println("Is good?");
+    System.out.println("Is good? (summer, 4000)");
     System.out.println(legoFigure.isGood("summer", 4000));
+    System.out.println();
 
-    System.out.println("- First: change hat and two new items");
-    legoFigure.hat = sunVisor;
-    legoFigure.leftHand = spear;
-    legoFigure.rightHand = axe;
+    System.out.println("Let's change the hat and add two new items:");
+    legoFigure.wearHat(sunVisor);
+    legoFigure.placeInLeftHand(spear);
+    legoFigure.placeInRightHand(axe);
     System.out.println(legoFigure);
     System.out.println("How fashionable is the new hat in winter?");
     System.out.println(legoFigure.hat.computeStyle("winter"));
+    System.out.println();
 
-    System.out.println("- Second: Now swap the items");
+    System.out.println("Now swap the items in each hand:");
     legoFigure.swapHands();
     System.out.println(legoFigure);
-    System.out.println("Is good?");
+    System.out.println("Is good? (winter, 800)");
     System.out.println(legoFigure.isGood("winter", 800));
+    System.out.println();
 
-    System.out.println("- Third: Remove one item");
-    legoFigure.rightHand = null;
+    System.out.println("Remove one item:");
+    legoFigure.placeInRightHand(null);
     System.out.println(legoFigure);
-    System.out.println("Is good?");
-    System.out.println(legoFigure.isGood("winter", 800));
+    System.out.println("Is good? (summer, 1600)");
+    System.out.println(legoFigure.isGood("summer", 1600));
+    System.out.println();
 
-    System.out.println("- Fourth: swap the items again");
+    System.out.println("Swap the items again:");
     legoFigure.swapHands();
     System.out.println(legoFigure);
-    System.out.println("Is good?");
-    System.out.println(legoFigure.isGood("winter", 800));
+    System.out.println("Is good? (autumn, 1600)");
+    System.out.println(legoFigure.isGood("autumn", 1600));
+    System.out.println();
 
-    System.out.println("- Fifth: Remove the hat");
-    legoFigure.hat = null;
+    System.out.println("Remove the hat:");
+    legoFigure.wearHat(null);
     System.out.println(legoFigure);
-    System.out.println("Is good?");
-    System.out.println(legoFigure.isGood("winter", 800));
+    System.out.println("Is good? (spring, 2000)");
+    System.out.println(legoFigure.isGood("spring", 2000));
+    System.out.println();
 
-    System.out.println("- Sixth: Remove all items");
-    legoFigure.leftHand = null;
-    legoFigure.rightHand = null;
+    System.out.println("Remove all items:");
+    legoFigure.placeInLeftHand(null);
+    legoFigure.placeInRightHand(null);
     System.out.println(legoFigure);
-    System.out.println("Is good?");
+    System.out.println("Is good? (winter, 800)");
     System.out.println(legoFigure.isGood("winter", 800));
+    System.out.println();
 
-    System.out.println("- Seventh: Remove the name");
+    System.out.println("Remove the name:");
     legoFigure.name = null;
     System.out.println(legoFigure);
 
