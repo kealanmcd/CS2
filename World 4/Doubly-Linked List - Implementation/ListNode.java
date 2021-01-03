@@ -49,6 +49,7 @@ public class ListNode
     // start of the list
     public ListNode addNodeToBeginning(ListNode newNode)
     {
+        newNode.prev = null;
         newNode.next = this;
         this.prev = newNode;
         return newNode;
@@ -58,16 +59,15 @@ public class ListNode
     // Add a node to the end of the list "this" belongs to
     public void addNodeToEnd(ListNode newNode)
     {
-        ListNode prevNode = null;
         ListNode currNode = this;
         while (currNode.next != null)
         {
-            prevNode = currNode;
             currNode = currNode.next;
         }
         
         currNode.next = newNode;
         currNode.next.prev = currNode;
+        currNode.next.next = null;      // If adding a node from another list, make sure next is set to null
     }
     
     
@@ -95,7 +95,9 @@ public class ListNode
             newNode.prev = currNode;
             newNode.next = currNode.next;
             currNode.next = newNode;
-            currNode.next.next.prev = newNode;
+            if (newNode.next != null) {
+                newNode.next.prev = newNode;
+            }
         }
     }
     
