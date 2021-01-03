@@ -8,14 +8,17 @@ public class ListNode
     
     public ListNode(ReadThis newData)
     {
-        this(newData, null, null);
+        this(newData, null);
     }
     
-    public ListNode(ReadThis newData, ListNode newNext, ListNode newPrev)
+    public ListNode(ReadThis newData, ListNode newNext)
     {
         data = newData;
         next = newNext;
-        prev = newPrev;
+        prev = null;            // prev should always be null on a newly created linked list
+        if (next != null) {
+            next.prev = this;
+        }
         totalNodes++;
     }
     
@@ -63,7 +66,6 @@ public class ListNode
             currNode = currNode.next;
         }
         
-        currNode.prev = prevNode;
         currNode.next = newNode;
         currNode.next.prev = currNode;
     }
@@ -230,7 +232,7 @@ public class ListNode
         ListNode temp = null;
         ListNode current = this;
         
-        while(current != null) {
+        while (current != null) {
             temp = current.prev;
             current.prev = current.next;
             current.next = temp;

@@ -24,7 +24,7 @@ public class TestClass
         // We can manually create a linked list
         // with two nodes like this:
 
-        ListNode listHead = new ListNode(r1, new ListNode(r2), null);
+        ListNode listHead = new ListNode(r1, new ListNode(r2));
         
         ListNode.printNumNodes(); // <- best way to call a static method
         listHead.printNumNodes(); // <- prints the same thing, but should avoid
