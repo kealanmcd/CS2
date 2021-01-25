@@ -6,13 +6,15 @@ public class BibliographyDatabase
 {
    
     private ArrayList<Journal> journals;
-
-    // Users of the class should be able to add or remove a particular article, issue, 
-    // or journal, and to add a list of journals.
+    private ArrayList<Issue> issuesList;
 
     BibliographyDatabase()
     {
+
         journals = Journal.getSampleJournals();
+        issuesList = new ArrayList<Issue>();
+        retrieveAllIssues();
+        
     }
 
 
@@ -20,7 +22,6 @@ public class BibliographyDatabase
     private ArrayList<Issue> retrieveAllIssues()
     {
 
-        ArrayList<Issue> issuesList = new ArrayList<Issue>();
         for (int i = 0; i < journals.size(); i++) {
             journals.get(i).getIssues(issuesList);
         }
@@ -47,7 +48,6 @@ public class BibliographyDatabase
     public void findArticlesFromYear(int year)
     {
 
-        ArrayList<Issue> issuesList = retrieveAllIssues();
         ArrayList<Article> articlesList = new ArrayList<Article>();
 
         for (int i = 0; i < issuesList.size(); i++) {
@@ -64,13 +64,14 @@ public class BibliographyDatabase
                 System.out.println(" " + (i+1) + ") " + articlesList.get(i));
             }
         }
+
     }
 
 
     // Find the most published author
     public void getMostPublishedAuthor() 
     {
-        ArrayList<Issue> issuesList = retrieveAllIssues();
+        
         ArrayList<Article> articlesList = retrieveAllArticles(issuesList);
         
         HashMap<String, Integer> authors = new HashMap<String, Integer>();
@@ -92,6 +93,7 @@ public class BibliographyDatabase
         }
 
         System.out.println("The most published author is " + mostPublishedAuthor + ".");
+
     }
 
 
@@ -100,8 +102,7 @@ public class BibliographyDatabase
     public void addArticleToIssue(String title, String author, int issueNum)
     {
 
-        ArrayList<Issue> issueList = retrieveAllIssues();
-        Issue issue = issueList.get(issueNum);
+        Issue issue = issuesList.get(issueNum);
         Article article = new Article(title, author, issue);
         issue.addArticles(article);
 
@@ -112,7 +113,6 @@ public class BibliographyDatabase
     // Print out all issues for the UI option 2 (Add an article to an issue)
     public void printAllIssues() 
     {
-        ArrayList<Issue> issuesList = retrieveAllIssues();
 
         if (issuesList.size() == 0) {
 
@@ -121,7 +121,7 @@ public class BibliographyDatabase
         } else {
 
             for (int i = 0; i < issuesList.size(); i++) {
-                System.out.println(issuesList.get(i));
+                System.out.println((i+1) + ") " + issuesList.get(i));
             }
 
             System.out.print("What issue would you like to add to (");
@@ -152,7 +152,6 @@ public class BibliographyDatabase
     // Used to to determine if any Issues exist in the database
     public int getIssuesSize()
     {
-        ArrayList<Issue> issuesList = retrieveAllIssues();
         return issuesList.size();
     }
 
@@ -204,7 +203,6 @@ public class BibliographyDatabase
     public void removeIssue(int issueNum)
     {
 
-        ArrayList<Issue> issuesList = retrieveAllIssues();
         issuesList.remove(issueNum);
 
     }

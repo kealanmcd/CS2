@@ -23,7 +23,7 @@ public class BibliographyManagerUI
             + " 2) Add an article to an issue" + "\n"
             + " 3) Find the most-published author" + "\n"
             + " 4) Exit" + "\n"
-            + " Please enter your choice (1, 2, or 3): ");
+            + " Please enter your choice (1, 2, 3 or 4): ");
 
             Scanner input = new Scanner(System.in);
             int choiceIndex = input.nextInt();
@@ -49,13 +49,25 @@ public class BibliographyManagerUI
                         int issueNum = input.nextInt() - 1;
                         input.nextLine();
 
-                        System.out.print("\nPlease specify the article title: ");
-                        String title = input.nextLine();
+                        if (issueNum >= 0 && (issueNum + 1) <= database.getIssuesSize()) {
 
-                        System.out.print("Please specify the article author: ");
-                        String author = input.nextLine();
+                            System.out.print("\nPlease specify the article title: ");
+                            String title = input.nextLine();
 
-                        database.addArticleToIssue(title, author, issueNum);
+                            System.out.print("Please specify the article author: ");
+                            String author = input.nextLine();
+
+                            database.addArticleToIssue(title, author, issueNum);
+
+                        } else {
+
+                            System.out.println("\nInvalid choice");
+
+                        }
+
+                    } else {
+
+                        System.out.println("\nSorry this database has no issues");
 
                     }
                     
