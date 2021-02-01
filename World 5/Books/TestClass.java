@@ -87,7 +87,7 @@ public class TestClass {
     shelf.placeOnShelf(booksArray[0]);
     shelf.placeOnShelf(booksArray[0]);
 
-   // shelf.printAllBooks();
+    // shelf.printAllBooks();
 
   }
 }
