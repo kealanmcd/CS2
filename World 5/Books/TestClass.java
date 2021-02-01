@@ -2,7 +2,7 @@ public class TestClass {
   public static void main(String[] args) {
 
     Reader Tom = new Reader("Tom");
-    Bookcase shelf = new Bookcase(5, 10);
+    Bookcase shelf = new Bookcase();
 
     Book booksArray[] = new Book[] {
         new Book("The Lord of the Rings: The Fellowship of the Ring", "J. R. R. Tolkien", 1001),
@@ -67,9 +67,11 @@ public class TestClass {
     Tom.retrieveBook(shelf, booksArray[1]);
     System.out.println(Tom.getBook());
     System.out.println();
+    shelf.printAllBooks();
     System.out.println();
     
     Tom.placeBookOnShelf(shelf);
+    shelf.printAllBooks();
     System.out.println();
 
     Tom.getBook();

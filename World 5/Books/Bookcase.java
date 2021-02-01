@@ -2,86 +2,86 @@ import java.util.*;
 
 public class Bookcase {
 
-	private int rows;
-	private int columns;
+	// private int rows;
+	// private int columns;
 	ArrayList<Book>[] booksOnShelf;
 	private int bookCount = 0;
+	private final int bookshelfSize = 50;
+	private Book[] bookcase;
   
-	Bookcase(int initRows, int initColumns)
+	Bookcase()
 	{
-			rows = initRows;
-			columns = initColumns;
-			buildBookShelves(initRows);
+      // rows = initRows;
+      // columns = initColumns;
+      // buildBookShelves(initRows);
+      bookcase= new Book[bookshelfSize];	
 	}
-	
+	/*
 	public int getShelves()
 	{
-			return rows;
+      return rows;
 	}
 
 	public int getShelfSize() 
 	{
-			return columns;
+      return columns;
 	}
-
+	*/
+  /*
 	// Builds each shelf on the bookcase
 	private void buildBookShelves(int rows)
 	{
-			booksOnShelf = new ArrayList[rows];
-			for (int i = 0; i < rows; i++) { 
-					booksOnShelf[i] = new ArrayList<Book>();
-			}
+      booksOnShelf = new ArrayList[rows];
+      for (int i = 0; i < rows; i++) { 
+          booksOnShelf[i] = new ArrayList<Book>();
+      }
 	}
+	*/
 	
 	// Places book in readers hand on shelf
 	public Book placeOnShelf(Book book)
 	{
-			if (bookCount < (rows * columns)) {
-					boolean bookPlaced = false;
-					int i = 0;
-					while (bookPlaced == false && i < rows) {		
-							if (booksOnShelf[i].size() < columns) {
-									booksOnShelf[i].add(book);
-									bookPlaced = true;
-							} else {
-									i++;
-							}
-					}
-					bookCount++;
-			} else {
-					System.out.println("Sorry, this bookcase is full. You can't place this book here");
-			}
+      if (bookCount < bookshelfSize) {
+					bookcase[bookCount] = book;
+          bookCount++;
+      } else {
+          System.out.println("Sorry, this bookcase is full. You can't place this book here");
+      }
 
-			return null;
+      return null;
 	}
 
-	// Retrieve the requiested book from the bookcase
+	// Retrieve the requested book from the bookcase
 	public Book getBook(Book book)
 	{
-			int i = 0, j = 0;
-			while (i < rows) {
-					while (j < booksOnShelf[i].size()) {
-							if (booksOnShelf[i].get(j) == book) {
-									bookCount--;
-									return booksOnShelf[i].remove(j);
-							}
-							j++;
-					}
-					i++;
-			}
+			int i = 0;
+			Book retrievedBook = null;
+      while (i < bookcase.length) {
+          if (bookcase[i] == book) {
+						retrievedBook = bookcase[i];
+						repositionBooks(i);
+            bookCount--;
+            return retrievedBook;
+          }
+          i++;
+      }
 
-			System.out.println("Sorry, this book doesn't exist on this shelf");
-			return null;
+      System.out.println("Sorry, this book doesn't exist on this shelf");
+      return retrievedBook;
+	}
+
+	private void repositionBooks(int index) {
+      for (int i = index + 1; i < bookcase.length; i++) {
+          bookcase[i-1] = bookcase[i];
+			}
 	}
 
 	// Prints all books on the bookcase
 	public void printAllBooks()
 	{
-			for (int i = 0; i < rows; i++) {
-					for (int j = 0; j < booksOnShelf[i].size(); j++) {			
-			  			System.out.println(booksOnShelf[i].get(j));
-					}
-			}
+      for (int i = 0; i < bookCount; i++) {
+          System.out.println(bookcase[i]);
+      }
 	}
 
 }

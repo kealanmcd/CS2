@@ -14,7 +14,7 @@ public class BibliographyDatabase
         journals = Journal.getSampleJournals();
         issuesList = new ArrayList<Issue>();
         retrieveAllIssues();
-        
+
     }
 
 
@@ -34,12 +34,14 @@ public class BibliographyDatabase
     // Build an ArrayList of of all Articles in the database
     private ArrayList<Article> retrieveAllArticles(ArrayList<Issue> issuesList) 
     {
+
         ArrayList<Article> articlesList = new ArrayList<Article>();
         for (int i = 0; i < issuesList.size(); i++) {
             issuesList.get(i).getArticles(articlesList);
         }
 
         return articlesList;
+        
     }
     
 
