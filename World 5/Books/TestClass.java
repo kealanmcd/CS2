@@ -65,7 +65,7 @@ public class TestClass {
 
     System.out.println();
     Tom.retrieveBook(shelf, booksArray[1]);
-    System.out.println(Tom.getBook());
+    Tom.getBook();
     System.out.println();
     shelf.printAllBooks();
     System.out.println();
@@ -76,8 +76,18 @@ public class TestClass {
 
     Tom.getBook();
     Tom.retrieveBook(shelf, booksArray[3]);
-    System.out.println(Tom.getBook());
+    Tom.getBook();
     Tom.retrieveBook(shelf, booksArray[7]);
+
+    System.out.println();
+    Tom.getBook();
+    Tom.placeBookOnShelf(shelf);
+    Tom.getBook();
+    System.out.println();
+    shelf.placeOnShelf(booksArray[0]);
+    shelf.placeOnShelf(booksArray[0]);
+
+   // shelf.printAllBooks();
 
   }
 }

@@ -14,13 +14,12 @@ public class Reader
         return name;
     }
 
-    public Book getBook() 
+    public void getBook() 
     {
         if (book != null) {
-            return book;
+            System.out.println(book);
         } else {
             System.out.println(name + " is not holding a book");
-            return  null;
         }
     }
 
