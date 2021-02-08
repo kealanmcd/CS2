@@ -35,7 +35,11 @@ public class Issue
     {
         return issueNum;
     }
-    
+
+    public ArrayList<Article> getArticles()
+    {
+        return articles;
+    }
 
     // Setter Methods
     public void setJournal(Journal initJournal)

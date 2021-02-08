@@ -151,6 +151,18 @@ public class BibliographyDatabase
         
     }
     
+    // Print out all articles
+    public void printAllArticles()
+    {
+        int articleCount = 1;
+        for (int i = 0; i < issuesList.size(); i++) {
+            for (int j = 0; j < issuesList.get(i).getArticles().size(); j++) {
+                System.out.println(articleCount + ") " + issuesList.get(i).getArticles().get(j));
+                articleCount++;
+            }
+        }
+    }
+
     // Used to to determine if any Issues exist in the database
     public int getIssuesSize()
     {
@@ -171,18 +183,22 @@ public class BibliographyDatabase
     // The UI will print out every article to the user and will then ask 
     // the user which article they want to remove by entering the numeric
     // digit that appears beside that article.
-    public void removeArticle(int articleInt) 
+    public void removeArticle(int articleIndex) 
     {
 
-        ArrayList<Article> articlesList = new ArrayList<Article>();
-        if (articlesList.size() > articleInt) {
+        for (int i = 0; i < issuesList.size(); i++) {
 
-            articlesList.remove(articleInt);
-
-        } else {
-
-              System.out.println("Invalid article choice");
-              
+            int issueArticleCount = issuesList.get(i).getArticles().size();
+            if (issueArticleCount > 0) {
+                
+                if (articleIndex >= issueArticleCount) {
+                    articleIndex -= issueArticleCount;
+                } else {
+                    issuesList.get(i).getArticles().remove(articleIndex);
+                    System.out.println("Article removed");
+                    break;
+                }
+            }
         }
           
     }
