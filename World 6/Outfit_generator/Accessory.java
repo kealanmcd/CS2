@@ -1,7 +1,9 @@
+package Outfit_generator;
+
 public abstract class Accessory {
     String color;
 
-    Accessory(String initColor)
+    public Accessory(String initColor)
     {
         color = initColor;
     }

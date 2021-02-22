@@ -1,4 +1,16 @@
+package Outfit_generator;
+
+import Outfit_generator.Shirts.*;
+import Outfit_generator.Accessories.*;
+import Outfit_generator.Pants.*;
+import Outfit_generator.Pants.Short;
+import Outfit_generator.Shoes.*;
+import Outfit_generator.Outerwears.*;
+
+
+
 public class TestClass {
+
     public static void main(String[] args) 
     {
         OutfitGenerator outfitGenerator = new OutfitGenerator();
@@ -15,8 +27,8 @@ public class TestClass {
         Khaki tanKhaki = new Khaki("tan", "casual");
         Short shortsGrey = new Short("grey", "casual");
         
-        WinterCoat coat = new WinterCoat("Black", "casual", 5);
-        RainCoat rainCoat = new RainCoat("Blue", "casual", 2);
+        Wintercoat coat = new Wintercoat("Black", "casual", 5);
+        Raincoat rainCoat = new Raincoat("Blue", "casual", 2);
         
         DressShoe dressShoe = new DressShoe("black");
 
@@ -24,25 +36,51 @@ public class TestClass {
         Earring goldEarrings = new Earring("gold");
         Watch leatherWatch = new Watch("brown");
 
+        Clothing[] itemsArray = new Clothing[] {
+            new Tshirt("red", "fancy", "long"),
+            new Tshirt("blue", "plain", "long"),
+            new ButtonShirt("white", "plain"),
+            new Sweater("charcoal", "plain"),
+            new TurtleNeck("yellow", "plain"),
 
-        outfitGenerator.addShirt(plainRed);
-        outfitGenerator.addShirt(plainBlue);
-        outfitGenerator.addShirt(buttonShirt);
-        outfitGenerator.addShirt(sweater);
-        outfitGenerator.addShirt(turtleNeck);
+            new Jean("blue", "plain"),
+            new Jean("black", "fancy"),
+            new Khaki("tan", "casual"),
+            new Short("grey", "casual"),
 
-        outfitGenerator.addPant(pantBlue);
-        outfitGenerator.addPant(pantBlack);
-        outfitGenerator.addPant(shortsGrey);
-        outfitGenerator.addPant(tanKhaki);
+            new Wintercoat("Black", "casual", 5),
+            new Raincoat("Blue", "casual", 2),
+
+            new DressShoe("black")
+        };
+
+        /*
+        // Add all items in array to their respective lists
+        for (int i = 0; i < itemsArray.length; i++)
+        {
+            outfitGenerator.superAdd(itemsArray[i]);
+        }
+        */
+        
+      
+        outfitGenerator.addItem(plainRed);
+        outfitGenerator.addItem(plainBlue);
+        outfitGenerator.addItem(buttonShirt);
+        outfitGenerator.addItem(sweater);
+        outfitGenerator.addItem(turtleNeck);
+
+        outfitGenerator.addItem(pantBlue);
+        outfitGenerator.addItem(pantBlack);
+        outfitGenerator.addItem(shortsGrey);
+        outfitGenerator.addItem(tanKhaki);
 
         // Add Outerwear
-        outfitGenerator.addOuterwear(coat);
-        outfitGenerator.addOuterwear(rainCoat);
+        outfitGenerator.addItem(coat);
+        outfitGenerator.addItem(rainCoat);
 
         // Add shoes
-        outfitGenerator.addShoe(dressShoe);
-
+        outfitGenerator.addItem(dressShoe);
+      
         // Add Accessories
         outfitGenerator.addAccessory(silverRing);
         outfitGenerator.addAccessory(goldEarrings);

@@ -1,6 +1,9 @@
+package Outfit_generator;
+import Outfit_generator.Interfaces.*;
+
 import java.util.Arrays;
 
-public abstract class Clothing implements ClothingMatches 
+public abstract class Clothing implements ClothingMatches, AccessoryMethods
 {
   
     private String color;
@@ -26,6 +29,7 @@ public abstract class Clothing implements ClothingMatches
         return style;
     }
 
+    // Methods Interface Clothing
     public boolean isPlain()
     {
         return style == "plain";
@@ -41,18 +45,45 @@ public abstract class Clothing implements ClothingMatches
         return style == "casual";
     }
 
-    public boolean isGoodWithEarrings()
-    {
-        return true;
-    }
-
     public boolean isColorful()
     {
         String[] colors = new String[] {"yellow", "green", "red", "blue" };
         return (Arrays.asList(colors)).contains(color);
     }
 
-    public boolean isGoodWithDressShoes()
+    // New methods - Accessories
+    public boolean isGoodWithEarrings()
+    {
+        return true;
+    }
+
+    public boolean isGoodWithTie()
+    {
+        return true;
+    }
+
+    public boolean isGoodWithWatch()
+    {
+        return true;
+    }
+
+    public boolean isGoodWithRing()
+    {
+        return true;
+    }
+
+    // New methods - Shoes specific
+    public boolean isGoodWithRunningShoes()
+    {
+        return true;
+    }
+
+    public boolean isGoodWithBoots()
+    {
+        return true;
+    }
+
+    public boolean isGoodWithTrainer()
     {
         return true;
     }
