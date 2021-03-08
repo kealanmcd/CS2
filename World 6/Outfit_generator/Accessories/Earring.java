@@ -5,6 +5,6 @@ public class Earring extends Accessory
 {
     public Earring (String initColor)
     {
-        super(initColor);
+        super(initColor, "fancy");
     }
 }

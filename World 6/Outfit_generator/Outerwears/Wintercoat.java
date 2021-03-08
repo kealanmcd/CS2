@@ -9,4 +9,9 @@ public class Wintercoat extends Outerwear
         super(initColor, initStyle, Math.max(3, initThermalRating));
     }
 
+    // Shoe Matching Methods
+    public boolean isGoodWithRunningShoes()
+    {
+        return false;
+    }
 }

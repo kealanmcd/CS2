@@ -6,8 +6,6 @@ public class Jean extends Pant
     public Jean (String initColor, String initStyle)
     {
         super(initColor, initStyle, "long");
-        //legLength = initLegLength;
-        //matchesDressShoes = true;
     }
 
     // Accessory Methods

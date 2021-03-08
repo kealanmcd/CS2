@@ -1,10 +1,9 @@
 package Outfit_generator;
-import Outfit_generator.Interfaces.ShoeMethods;
+import Outfit_generator.Interfaces.*;
 
-public abstract class Pant extends Clothing implements ShoeMethods
+public abstract class Pant extends Clothing implements ShoeMethods, AccessoryMethods
 {
     private String legLength;
-    private boolean matchesDressShoes;
 
     public Pant (String initColor, String initStyle, String initLegLength)
     {
@@ -12,7 +11,33 @@ public abstract class Pant extends Clothing implements ShoeMethods
         legLength = initLegLength;
     }
 
-    // Shoe Matching Methods
+    public String getLegLength()
+    {
+        return legLength;
+    }
+
+    // AccessoryMethods Interface
+    public boolean isGoodWithEarrings()
+    {
+        return true;
+    }
+
+    public boolean isGoodWithTie()
+    {
+        return true;
+    }
+
+    public boolean isGoodWithWatch()
+    {
+        return true;
+    }
+
+    public boolean isGoodWithRing()
+    {
+        return true;
+    }
+
+    // Shoe Matching Methods  
     public boolean isGoodWithDressShoes()
     {
         return true;

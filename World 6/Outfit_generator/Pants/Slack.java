@@ -1,15 +1,11 @@
-package Outfit_generator;
-
 package Outfit_generator.Pants;
 import Outfit_generator.*;
 
-public class Slack extends Pant
+public class Slack extends Pant 
 {
-    public Slack (String initColor, String initOccasion)
+    public Slack (String initColor, String initStyle)
     {
-        super(initColor, "Long");
-        //legLength = initLegLength;
-        //matchesDressShoes = true;
+        super(initColor, initStyle, "long");
     }
 
     // Accessory Methods

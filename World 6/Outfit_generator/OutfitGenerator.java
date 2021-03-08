@@ -1,8 +1,4 @@
 package Outfit_generator;
-import Outfit_generator.Accessories.*;
-import Outfit_generator.Pants.*;
-import Outfit_generator.Pants.Short;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -14,6 +10,8 @@ public class OutfitGenerator {
     private  ArrayList<Shoe> shoes;
     private  ArrayList<Accessory> accessories;
 
+    private Random rand;
+
     OutfitGenerator()
     {
         shirts = new ArrayList<Shirt>();
@@ -21,130 +19,142 @@ public class OutfitGenerator {
         outerwears = new ArrayList<Outerwear>();
         shoes = new ArrayList<Shoe>();
         accessories = new ArrayList<Accessory>();
+        rand = new Random();
     }
 
-    public void addAccessory(Accessory accessory)
+    public void addAccessory(ArrayList<Accessory> accessory)
     {
-        accessories.add(accessory);
+        accessories.addAll(accessory);
     }
 
-    public void addItem(Shirt shirt)
+    public void addShirts(ArrayList<Shirt> shirt)
     {
-        shirts.add(shirt);
+        shirts.addAll(shirt);
     }
 
-    public void addItem(Pant pant)
+    public void addPants(ArrayList<Pant> pant)
     {
-        pants.add(pant);
+        pants.addAll(pant);
     }
 
-    public void addItem(Outerwear outerwear)
+    public void addOuterwear(ArrayList<Outerwear> outerwear)
     {
-        outerwears.add(outerwear);
+        outerwears.addAll(outerwear);
     }
 
-    public void addItem(Shoe shoe)
+    public void addShoes(ArrayList<Shoe> shoe)
     {
-        shoes.add(shoe);
+        shoes.addAll(shoe);
     }
 
 
-    // Use one method and use downcasting to access the correct subclass
+    // Print out the current clothing and accessory combination to be checked by the application
     private void printOutiftCombination(Clothing shirt, Clothing pant, Clothing outerwear, Clothing shoe, Accessory accessory)
     {
-        System.out.println("Outfit combination:\n" + shirt + "\n" + pant + "\n" + shoe + "\n" + outerwear + "\n" + accessory);
+        System.out.println("Outfit combination:\n" + shirt + "\n" + pant + "\n" + shoe + "\n" + outerwear + "\n" + accessory + "\n");
     }
+
 
     // Grabs a random accessory from the "accessories" list
     private Accessory getRandomAccessory()
     {
-        Random rand = new Random();
         return accessories.get(rand.nextInt(accessories.size())); 
     }
+
 
     // Grabs random piece of clothing from the passed in list ("shirts", "pants", "outerwears" or "shoes")
     private Clothing getRandomClothing(ArrayList<? extends Clothing> items)
     {
-        Random rand = new Random();
         return items.get(rand.nextInt(items.size())); 
     }
+
 
     // Return true if the shirt, pant and shoe are all plain
     private boolean isOutiftPlain(Shirt shirt, Pant pant, Shoe shoe)
     {
-        return shirt.isPlain() && pant.isPlain() && shoe.isPlain();
+        boolean match = shirt.isPlain() && pant.isPlain() && shoe.isPlain();
+        if (match) { System.out.println("Sorry your outfit is too plain. Try adding some brighter colours"); }
+
+        return match;
     }
+
 
     // Return true if the outerwear thermal rating is at least 3 (out of 5) and the pant is a Short
     private boolean isWinterCoatWithShorts(Outerwear outerwear, Pant pant)
     {
-        return outerwear.getThermalRating() >= 3 && pant instanceof Short;
+        boolean match = outerwear.getThermalRating() >= 3 && pant.getLegLength() == "short";
+        if (match) { System.out.println("Sorry shorts can't be paired with heavy outerwear"); }
+
+        return match;
     }
 
-    // Rturn true if Blue and Green is present in the outfit
+
+    // Return true if Blue and Green is present in the outfit
     private boolean isBlueAndGreenPresent(Shirt shirt, Pant pant, Outerwear outerwear)
     {
         boolean greenPresent = (shirt.getColor() == "green" || pant.getColor() == "green" || outerwear.getColor() == "green" ) ? true : false; 
         boolean bluePresent = (shirt.getColor() == "blue" || pant.getColor() == "blue" || outerwear.getColor() == "blue" ) ? true : false;
-        return greenPresent && bluePresent;
-    }
+        boolean match = greenPresent && bluePresent;
 
-    // Return true if the pant is a Jean and the accessory is a Tie
-    private boolean isJeanAndTieCombo(Pant pant, Accessory accessory)
-    {
-        return pant instanceof Jean && accessory instanceof Tie;
+        if (match) { System.out.println("Blue and Green must never be worn together, try picking a different outfit"); }
+
+        return match;
     }
 
     // Depending on the accessory subclass passed in, check if all the Clothing items match it
-    private boolean matchesAccessory(Shirt shirt, Pant pant, Outerwear outerwear, Accessory accessory)
+    private boolean matchesAccessory(Shirt shirt, Pant pant, Accessory accessory)
     {
-        String accessoryType = accessory.getClass().getSimpleName();
+        String accessoryType = accessory.getAccessoryType();
         boolean match = true;
-        switch(accessoryType) {
-            case "Earring":
-                match = shirt.isGoodWithEarrings() && pant.isGoodWithEarrings() && outerwear.isGoodWithEarrings();
+
+        // Some accessories don't go with certain items of clothing
+        switch (accessoryType) {
+            case "earring":
+                match = shirt.isGoodWithEarrings() && pant.isGoodWithEarrings();
                 break;
-            case "Ring": 
-                match = shirt.isGoodWithRing() && pant.isGoodWithRing() && outerwear.isGoodWithRing();
+            case "ring": 
+                match = shirt.isGoodWithRing() && pant.isGoodWithRing();
                 break;
-            case "Tie": 
-                match = shirt.isGoodWithTie() && pant.isGoodWithTie() && outerwear.isGoodWithTie();
+            case "tie": 
+                match = shirt.isGoodWithTie() && pant.isGoodWithTie();
                 break;
-            case "Watch":
-                match = shirt.isGoodWithWatch() && pant.isGoodWithWatch() && outerwear.isGoodWithWatch();
-                break;
-            default:
-                match = true;
+            case "watch":
+                match = shirt.isGoodWithWatch() && pant.isGoodWithWatch();
                 break;
         }
+
+        if (!match) { System.out.println("Your " + accessoryType + " doesn't go with your outfit"); }
+
         return match;
     }
+
 
     // Check if the chosen shoes match the Clothing chosen
     private boolean matchesShoes(Shirt shirt, Pant pant, Outerwear outerwear, Shoe shoe)
     {
         
-        String shoeType = shoe.getClass().getSimpleName();
+        String shoeType = shoe.getShoeType();
         boolean match = true;
         switch(shoeType) {
-            case "Boot":
-                match = shirt.isGoodWithBoots() && pant.isGoodWithBoots() && outerwear.isGoodWithBoots();
+            case "boot":
+                match = shirt.isGoodWithBoots() && pant.isGoodWithBoots();
                 break;
-            case "DressShoe": 
-                match = shirt.isGoodWithDressShoes() && pant.isGoodWithDressShoes() && outerwear.isGoodWithDressShoes();
+            case "dressshoe": 
+                match = shirt.isGoodWithDressShoes() && pant.isGoodWithDressShoes();
                 break;
-            case "RunningShoe": 
-                match = shirt.isGoodWithRunningShoes() && pant.isGoodWithRunningShoes() && outerwear.isGoodWithRunningShoes();
+            case "runningshoe": 
+                match = shirt.isGoodWithRunningShoes() && pant.isGoodWithRunningShoes();
                 break;
-            case "Trainer":
-                match = shirt.isGoodWithTrainers() && pant.isGoodWithTrainers() && outerwear.isGoodWithTrainers();
-                break;
-            default:
-                match = true;
+            case "trainer":
+                match = shirt.isGoodWithTrainers() && pant.isGoodWithTrainers();
                 break;
         }
+
+        if (!match) { System.out.println("Your " + shoeType + " doesn't go with your outfit"); }
+
         return match;
     }
+
 
     // This is the master method to be used to check if the chosen items of clothing are a match
     private boolean isGoodOutfit(Shirt shirt, Pant pant, Outerwear outerwear, Accessory accessory, Shoe shoe)
@@ -152,12 +162,12 @@ public class OutfitGenerator {
         boolean plainOutfit = isOutiftPlain(shirt, pant, shoe);                         // The shirt, pants, and shoes should not all be plain
         boolean winterCoatWithShorts = isWinterCoatWithShorts(outerwear, pant);         // A winter jacket (outerwear with a thermal rating of at least 3) shouldn’t be worn with shorts
         boolean blueAndGreenPresent = isBlueAndGreenPresent(shirt, pant, outerwear);    // Is green and blue present in the outfit
-        boolean jeanAndTieCombo = isJeanAndTieCombo(pant, accessory);                   // Are the pants Jeans and the accessory a tie
-        boolean matchesAccessory = matchesAccessory(shirt, pant, outerwear, accessory); // Does the selected accessory match the clothing
+        boolean matchesAccessory = matchesAccessory(shirt, pant, accessory);            // Does the selected accessory match the clothing
         boolean matchesShoes = matchesShoes(shirt, pant, outerwear, shoe);              // Do the selected shoes match the clothing
 
-        return (plainOutfit || winterCoatWithShorts || blueAndGreenPresent || jeanAndTieCombo || !matchesAccessory || !matchesShoes) ? false : true;
+        return (plainOutfit || winterCoatWithShorts || blueAndGreenPresent || !matchesAccessory || !matchesShoes) ? false : true;
     }
+
 
     public void randomOutfitCombo()
     {
@@ -173,6 +183,7 @@ public class OutfitGenerator {
         System.out.println("Outfit is a match: " + match + "\n");
 
     }
+
 
     // Keep calling this function until we get a matching outfit combination
     public boolean generateMatchingOutfitCombo()

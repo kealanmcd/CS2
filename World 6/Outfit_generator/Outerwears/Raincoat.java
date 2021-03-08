@@ -8,13 +8,8 @@ public class Raincoat extends Outerwear
         super(initColor, initStyle, initThermalRating);
     }
 
-    // Accessory Methods
-    public boolean isGoodWithEarrings()
-    {
-        return false;
-    }
-    
-    public boolean isGoodWithTie()
+    // Shoe Matching Methods
+    public boolean isGoodWithDressShoes()
     {
         return false;
     }

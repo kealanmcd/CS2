@@ -7,8 +7,6 @@ public class Short extends Pant
     public Short (String initColor, String initStyle)
     {
         super(initColor, initStyle, "short");
-        //legLength = initLegLength;
-        //matchesDressShoes = true;
     }
     
     // Accessory Methods

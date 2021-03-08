@@ -3,9 +3,9 @@ import Outfit_generator.*;
 
 public class ButtonShirt extends Shirt
 {
-    public ButtonShirt (String initColor, String initOccasion)
+    public ButtonShirt (String initColor, String initStyle, String initSleeveLength)
     {
-        super(initColor, initOccasion, "long");
+        super(initColor, initStyle, initSleeveLength);
     }
     
     // Shoe methods

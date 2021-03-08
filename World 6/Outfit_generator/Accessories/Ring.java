@@ -5,6 +5,6 @@ public class Ring extends Accessory
 {
     public Ring (String initColor)
     {
-        super(initColor);
+        super(initColor, "plain");
     }
 }

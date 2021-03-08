@@ -1,31 +1,51 @@
 package Outfit_generator;
+import java.util.Arrays;
+import Outfit_generator.Interfaces.ClothingMatches;
 
-public abstract class Accessory {
+public abstract class Accessory implements ClothingMatches {
     String color;
+    String type;
+    private final String[] colorsArray = new String[] { "yellow", "green", "red", "blue" };
 
-    public Accessory(String initColor)
+    public Accessory(String initColor, String initStyle)
     {
-        color = initColor;
+        color = initColor.toLowerCase();
+        type = getClass().getSimpleName().toLowerCase(); // Needed to check if Pants matches Tie etc.
     }
 
     // Getters
-    public boolean isGoodWithShirt()
+    public String getColor()
     {
-        return false;
+        return color;
     }
 
-    public boolean isGoodWithPants()
+    public String getAccessoryType()
     {
-        return false;
+        return type;
     }
 
-    public boolean isGoodWithJeans()
+    public boolean isPlain()
     {
-        return false;
+        return !(Arrays.asList(colorsArray)).contains(color);
+    }
+
+    public boolean isColorful()
+    {
+        return (Arrays.asList(colorsArray)).contains(color);
+    }
+
+    public boolean isFancy()
+    {
+        return style == "fancy";
+    }
+
+    public boolean isCasual()
+    {
+        return style == "casual";
     }
 
     public String toString()
     {
-        return this.getClass().getSimpleName() + ": Color " + color;
+        return this.getClass().getSimpleName() + ": Color " + getColor();
     }
 }

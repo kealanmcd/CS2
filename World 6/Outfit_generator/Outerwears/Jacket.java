@@ -7,6 +7,10 @@ public class Jacket extends Outerwear
     {
         super(initColor, initStyle, initThermalRating);
     }
-
-    // Accessory Methods - All true
+    
+    // Shoe Matching Methods
+    public boolean isGoodWithDressShoes()
+    {
+        return false;
+    }
 }

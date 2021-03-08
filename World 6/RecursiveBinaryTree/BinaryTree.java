@@ -44,21 +44,27 @@ public class BinaryTree
         boolean treeLeft = tree.getLeftChild() != null;
         boolean treeRight = tree.getRightChild() != null;
 
+        // If the current nodes data matches, check their inner nodes
         if (data == tree.getData())
         {
+            // If both nodes are leaf nodes, we've reached the end of the subtree so can return true
             if (!leftNode && !rightNode && !treeLeft && !treeRight)
             {
                 return true;
             }
 
+            // If both nodes don't have a left child node but do have a right child, call the right node
             if (!leftNode && rightNode && !treeLeft && treeRight) 
             {
                 return rightChild.hasSameContentsAs(tree.getRightChild());
             }
+            // If both nodes don't have a right child but do have a left child, call the left child node
             else if (leftNode && !rightNode && treeLeft && !treeRight) 
             {
                 return leftChild.hasSameContentsAs(tree.getLeftChild());
             }
+            // The current node has both left and right child nodes so recursively call both child nodes.
+            // Both child nodes need to return true in order for both trees to match
             else if (leftNode && rightNode && treeLeft && treeRight)
             {
                 return leftChild.hasSameContentsAs(tree.getLeftChild()) && rightChild.hasSameContentsAs(tree.getRightChild());
@@ -72,19 +78,25 @@ public class BinaryTree
 
     public int numberOfNodes()
     {
+        // We've reached the leaf node in the Subtree so return 1
+        // to be added to the total nodes found
         if (leftChild == null && rightChild == null)
         {
             return 1;
         }
 
+        // If no left child then we know there's a right node
         if (leftChild == null)
         {
             return 1 + rightChild.height();
         }
+        // If no right child then travel down the left child node
         else if (rightChild == null)
         {
             return 1 + leftChild.height();
         }
+        // Travel down both left and right child nodes and add each of those to the
+        // accumulative count
         else 
         {
             return 1 + leftChild.numberOfNodes() + rightChild.numberOfNodes();

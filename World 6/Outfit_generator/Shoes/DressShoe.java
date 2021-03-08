@@ -7,5 +7,4 @@ public class DressShoe extends Shoe
     {
         super(initColor, "fancy");
     }
-  
 }

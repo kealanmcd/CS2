@@ -1,12 +1,11 @@
 package Outfit_generator;
-
 import Outfit_generator.Shirts.*;
 import Outfit_generator.Accessories.*;
 import Outfit_generator.Pants.*;
 import Outfit_generator.Pants.Short;
 import Outfit_generator.Shoes.*;
 import Outfit_generator.Outerwears.*;
-
+import java.util.ArrayList;
 
 
 public class TestClass {
@@ -15,76 +14,53 @@ public class TestClass {
     {
         OutfitGenerator outfitGenerator = new OutfitGenerator();
 
-        Tshirt plainRed = new Tshirt("red", "fancy", "long");
-        Tshirt plainBlue = new Tshirt("blue", "plain", "long");
-
-        ButtonShirt buttonShirt = new ButtonShirt("white", "plain");
-        Sweater sweater = new Sweater("charcoal", "plain");
-        TurtleNeck turtleNeck = new TurtleNeck("yellow", "plain");
-
-        Jean pantBlue = new Jean("blue", "plain");
-        Jean pantBlack = new Jean("black", "fancy");
-        Khaki tanKhaki = new Khaki("tan", "casual");
-        Short shortsGrey = new Short("grey", "casual");
-        
-        Wintercoat coat = new Wintercoat("Black", "casual", 5);
-        Raincoat rainCoat = new Raincoat("Blue", "casual", 2);
-        
-        DressShoe dressShoe = new DressShoe("black");
-
-        Ring silverRing = new Ring("silver");
-        Earring goldEarrings = new Earring("gold");
-        Watch leatherWatch = new Watch("brown");
-
-        Clothing[] itemsArray = new Clothing[] {
-            new Tshirt("red", "fancy", "long"),
-            new Tshirt("blue", "plain", "long"),
-            new ButtonShirt("white", "plain"),
-            new Sweater("charcoal", "plain"),
-            new TurtleNeck("yellow", "plain"),
-
-            new Jean("blue", "plain"),
-            new Jean("black", "fancy"),
-            new Khaki("tan", "casual"),
-            new Short("grey", "casual"),
-
-            new Wintercoat("Black", "casual", 5),
-            new Raincoat("Blue", "casual", 2),
-
-            new DressShoe("black")
+        ArrayList<Shirt> shirtsArray = new ArrayList<Shirt>() {
+            {
+                add(new Tshirt("red", "fancy", "long"));
+                add(new Tshirt("blue", "plain", "long"));
+                add(new ButtonShirt("white", "plain", "long"));
+                add(new Sweater("charcoal", "plain"));
+            }
         };
 
-        /*
-        // Add all items in array to their respective lists
-        for (int i = 0; i < itemsArray.length; i++)
-        {
-            outfitGenerator.superAdd(itemsArray[i]);
-        }
-        */
+        ArrayList<Pant> pantsArray = new ArrayList<Pant>() {
+            {
+                add(new Jean("blue", "plain"));
+                add(new Jean("black", "fancy"));
+                add(new Khaki("tan", "casual"));
+                add(new Short("grey", "casual"));
+            }
+        };
+
+        ArrayList<Outerwear> outerwearsArray = new ArrayList<Outerwear>() {
+            {
+                add(new Wintercoat("Black", "casual", 5));
+                add(new Raincoat("Blue", "casual", 2));
+            }
+        };
+
+        ArrayList<Shoe> shoesArray = new ArrayList<Shoe>() {
+            {
+                add(new DressShoe("black"));
+            }
+        };
+
+        ArrayList<Accessory> accessoriesArray = new ArrayList<Accessory>() {
+            {
+                add(new Ring("silver"));
+                add(new Earring("gold"));
+                add(new Watch("brown"));
+            }
+        };
+
+        outfitGenerator.addShirts(shirtsArray);
+        outfitGenerator.addPants(pantsArray);
+        outfitGenerator.addOuterwear(outerwearsArray);
+        outfitGenerator.addShoes(shoesArray);
+        outfitGenerator.addAccessory(accessoriesArray);
+
         
-      
-        outfitGenerator.addItem(plainRed);
-        outfitGenerator.addItem(plainBlue);
-        outfitGenerator.addItem(buttonShirt);
-        outfitGenerator.addItem(sweater);
-        outfitGenerator.addItem(turtleNeck);
-
-        outfitGenerator.addItem(pantBlue);
-        outfitGenerator.addItem(pantBlack);
-        outfitGenerator.addItem(shortsGrey);
-        outfitGenerator.addItem(tanKhaki);
-
-        // Add Outerwear
-        outfitGenerator.addItem(coat);
-        outfitGenerator.addItem(rainCoat);
-
-        // Add shoes
-        outfitGenerator.addItem(dressShoe);
-      
-        // Add Accessories
-        outfitGenerator.addAccessory(silverRing);
-        outfitGenerator.addAccessory(goldEarrings);
-        outfitGenerator.addAccessory(leatherWatch);
+        // Add all items in array to their respective lists
 
         for (int i = 0; i < 6; i++) {
             outfitGenerator.randomOutfitCombo(); 

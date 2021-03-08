@@ -5,6 +5,6 @@ public class Watch extends Accessory
 {
     public Watch (String initColor)
     {
-        super(initColor);
+        super(initColor, "casual");
     }
 }
